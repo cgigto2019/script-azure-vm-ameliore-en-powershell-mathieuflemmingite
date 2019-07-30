@@ -16,7 +16,7 @@ New-AzResourceGroup -Name 'testressources' -Location 'westeurope'
 
 $user="Mathieu"
 $keyMDP = ( Get-Random ) % 20
-$password = "bibo"+$rand
+$password = "bibo"+$keyMDP
 $password = ConvertTo-SecureString $password -AsPlainText -Force
 
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList ($user, $password)
