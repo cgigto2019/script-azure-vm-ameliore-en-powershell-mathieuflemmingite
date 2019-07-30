@@ -8,6 +8,8 @@ New-AzResourceGroup -Name 'testressources' -Location 'westeurope'
 
 $nbVM = Read-Host "Combien de VM souhaitez-vous créer ? "
 
+$credential = Get-Credential -Message "Veuillez saisir votre login et votre mot de passe pour vos VMs :"
+
 for ($i=1;$i -le $nbVM;$i++)
 {
 
@@ -30,6 +32,5 @@ for ($i=1;$i -le $nbVM;$i++)
     git clone git@vps706123.ovh.net:root/boite-a-outils.git
 
 }
-
 
 
