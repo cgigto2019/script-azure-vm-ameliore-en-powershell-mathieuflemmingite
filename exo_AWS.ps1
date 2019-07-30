@@ -17,8 +17,7 @@ New-AzResourceGroup -Name 'testressources' -Location 'westeurope'
 $user="Mathieu"
 $keyMDP = ( Get-Random ) % 20
 $password = "bibo"+$rand
-
-Write-Host "$password"
+$password = ConvertTo-SecureString $password -AsPlainText -Force
 
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList ($user, $password)
 
@@ -37,7 +36,7 @@ for ($i=1;$i -le $nbVM;$i++)
     
     $newVM1 = New-AzVM @parameters
 
-    $publicIp = Get-AsPublicIpAdress -Name "namVM-" + $i
+    $publicIp = Get-AsPublicIpAdress -Name "namVM-" + $numVM
 
     ssh $env:USERNAME@publicIP
 
