@@ -6,15 +6,14 @@ $sshPublicKey = Get-Content "$HOME\.ssh\id_rsa.pub"
 
 New-AzResourceGroup -Name 'testressources' -Location 'westeurope'
 
-for ($i=0;$i -le 2;$i++)
-{
+$nbVM = Read-Host "Combien de VM souhaitez-vous créer ? "
 
-    
-    $nameVM = Read-Host "Donnez un nom à votre VM : "
+for ($i=1;$i -le $nbVM;$i++)
+{
 
     $parameters = @{
       ResourceGroupName = 'testressources'
-      Name = $nameVM
+      Name =  "namVM-" + $i
       Location = 'westeurope'
       ImageName = 'UbuntuLTS'
       Credential = $credential
@@ -24,11 +23,13 @@ for ($i=0;$i -le 2;$i++)
     
     $newVM1 = New-AzVM @parameters
 
-    $publicIp = Get-AsPublicIpAdress -Name $nameVM
+    $publicIp = Get-AsPublicIpAdress -Name "namVM-" + $i
 
     ssh $env:USERNAME@publicIP
 
     git clone git@vps706123.ovh.net:root/boite-a-outils.git
 
 }
+
+
 
