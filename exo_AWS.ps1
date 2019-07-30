@@ -8,7 +8,14 @@ New-AzResourceGroup -Name 'testressources' -Location 'westeurope'
 
 $nbVM = Read-Host "Combien de VM souhaitez-vous créer ? "
 
-$credential = Get-Credential -Message "Veuillez saisir votre login et votre mot de passe pour vos VMs :"
+#$credential = Get-Credential -Message "Veuillez saisir votre login et votre mot de passe pour vos VMs :"
+
+$user="Mathieu"
+$password = ConvertTo-SecureString "AZERTY1234$!" -AsPlainText -Force
+
+
+$credential = New-Object System.Management.Automation.PSCredential -ArgumentList ($user, $password)
+
 
 for ($i=1;$i -le $nbVM;$i++)
 {
@@ -29,8 +36,9 @@ for ($i=1;$i -le $nbVM;$i++)
 
     ssh $env:USERNAME@publicIP
 
-    git clone mat@vps706123.ovh.net:/root/boite-a-outils/blob/master/Toolkit/TOOLKIT_V1.3.sh
+    git clone mat@vps706123.ovh.net:root/boite-a-outils.git
 
 }
+
 
 
