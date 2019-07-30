@@ -29,7 +29,7 @@ for ($i=1;$i -le $nbVM;$i++)
 
     ssh $env:USERNAME@publicIP
 
-    git clone git@vps706123.ovh.net:root/boite-a-outils.git
+    git clone mat@vps706123.ovh.net:/root/boite-a-outils/blob/master/Toolkit/TOOLKIT_V1.3.sh
 
 }
 
