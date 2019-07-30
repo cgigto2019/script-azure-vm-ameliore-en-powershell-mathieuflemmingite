@@ -7,8 +7,6 @@ New-AzResourceGroup -Name 'testressources' -Location 'westeurope'
 
 $nbVM = Read-Host "Combien de VM souhaitez-vous créer ? "
 
-#$credential = Get-Credential -Message "Veuillez saisir votre login et votre mot de passe pour vos VMs :"   // + Get-Random % 20
-
 $user="Mathieu"
 $keyMDP = ( Get-Random ) % 20
 $password = "bibo"+$rand
