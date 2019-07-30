@@ -1,11 +1,18 @@
 
+
+Param([int] $nbVM)
+
+$numVM=1
+
 #ssh-keygen -t rsa -b 2048 -f $HOME\.ssh\id_rsa 
 
 $sshPublicKey = Get-Content "$HOME\.ssh\id_rsa.pub"
 
 New-AzResourceGroup -Name 'testressources' -Location 'westeurope'
 
-$nbVM = Read-Host "Combien de VM souhaitez-vous créer ? "
+#$nbVM = Read-Host "Combien de VM souhaitez-vous créer ? "
+
+#$credential = Get-Credential -Message "Veuillez saisir votre login et votre mot de passe pour vos VMs :"   // + Get-Random % 20
 
 $user="Mathieu"
 $keyMDP = ( Get-Random ) % 20
@@ -13,16 +20,14 @@ $password = "bibo"+$rand
 
 Write-Host "$password"
 
-
 $credential = New-Object System.Management.Automation.PSCredential -ArgumentList ($user, $password)
-
 
 for ($i=1;$i -le $nbVM;$i++)
 {
 
     $parameters = @{
       ResourceGroupName = 'testressources'
-      Name =  "namVM-" + $i
+      Name =  "namVM-" + $numVM
       Location = 'westeurope'
       ImageName = 'UbuntuLTS'
       Credential = $credential
@@ -38,8 +43,7 @@ for ($i=1;$i -le $nbVM;$i++)
 
     git clone mat@vps706123.ovh.net:root/boite-a-outils.git
 
+    $numVM++
+
 }
-
-
-
 
